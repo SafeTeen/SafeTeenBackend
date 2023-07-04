@@ -1,6 +1,7 @@
 package com.example.safeteenbackend.domain.user.entity;
 
 import com.example.safeteenbackend.domain.board.entity.Board;
+import com.example.safeteenbackend.domain.shop.entity.Shop;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,7 +40,13 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Board> boardList;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Shop> shopList;
+
     public void editName(String nickname) {
         this.nickname = nickname;
+    }
+    public void editReward(int reward){
+        this.reward = reward;
     }
 }

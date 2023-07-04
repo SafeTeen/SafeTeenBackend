@@ -23,6 +23,7 @@ public class UserService {
                 .reward(user.getReward())
                 .profile_img(user.getProfile_img())
                 .boardList(user.getBoardList())
+                .shopList(user.getShopList())
                 .build();
     }
 

@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class EditRequest {
     private String nickname;
+    private int shop_id;
 }
