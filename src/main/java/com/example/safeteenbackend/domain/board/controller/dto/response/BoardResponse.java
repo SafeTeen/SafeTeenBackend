@@ -15,5 +15,4 @@ public class BoardResponse {
     private String title;
     private String ask;
     private LocalDateTime dateTime;
-    private User user;
 }

@@ -38,7 +38,6 @@ public class BoardService {
                 .id(board.getId())
                 .title(board.getTitle())
                 .ask(board.getAsk())
-                .user(board.getUser())
                 .dateTime(board.getDate())
                 .build();
     }
@@ -50,7 +49,6 @@ public class BoardService {
                 .id(board.getId())
                 .title(board.getTitle())
                 .ask(board.getAsk())
-                .user(board.getUser())
                 .dateTime(board.getDate())
                 .build();
     }
@@ -67,8 +65,7 @@ public class BoardService {
                 b.getId(),
                 b.getTitle(),
                 b.getAsk(),
-                b.getDate(),
-                b.getUser()
+                b.getDate()
         )).collect(Collectors.toList());
     }
 }
