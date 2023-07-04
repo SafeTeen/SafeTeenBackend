@@ -11,7 +11,8 @@ public enum ErrorCode {
     PASSWORD_NOT_MATCHES(400, "incorrect password"),
 
     //404
-    USER_NOT_FOUND(404, "user not found");
+    USER_NOT_FOUND(404, "user not found"),
+    BOARD_NOT_FOUND(404, "board not found");
 
     private final int httpStatus;
     private final String message;
