@@ -2,13 +2,13 @@ package com.example.safeteenbackend.domain.comment.entity;
 
 import com.example.safeteenbackend.domain.user.entity.User;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity(name = "comment")
 public class CommentEntity {
