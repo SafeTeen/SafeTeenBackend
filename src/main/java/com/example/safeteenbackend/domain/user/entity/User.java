@@ -40,7 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Board> boardList;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "user_id")
     private List<Shop> shopList;
 
     public void editName(String nickname) {
