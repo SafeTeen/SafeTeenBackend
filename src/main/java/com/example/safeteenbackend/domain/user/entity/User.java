@@ -1,10 +1,14 @@
 package com.example.safeteenbackend.domain.user.entity;
 
+import com.example.safeteenbackend.domain.board.entity.Board;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,9 +29,17 @@ public class User {
     @Column
     private String nickname;
 
-    @Column
+    @Column(length = 999999999)
     private String profile_img;
 
     @Column
     private int reward;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Board> boardList;
+
+    public void editName(String nickname) {
+        this.nickname = nickname;
+    }
 }
