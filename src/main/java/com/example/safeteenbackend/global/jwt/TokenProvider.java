@@ -38,22 +38,6 @@ public class TokenProvider {
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
-
-    public String createRefreshToken(String email){
-        Claims claims = Jwts.claims().setSubject(email);
-        Date date = new Date();
-        String refreshToken = Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(date)
-                .setExpiration(new Date(date.getTime() + REFRESH_TOKEN_VALID_TIME))
-                .signWith(SignatureAlgorithm.HS256, secretKey)
-                .compact();
-        RefreshToken redis = new RefreshToken(refreshToken, email, REFRESH_TOKEN_VALID_TIME);
-        refreshTokenRepository.save(redis);
-
-        return refreshToken;
-    }
-
     public Claims parseClaims(String token){
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }

@@ -41,11 +41,9 @@ public class AuthService {
             throw new PasswordNotMatchesException();
 
         String accessToken = tokenProvider.createAccessToken(request.getEmail());
-        String refreshToken = tokenProvider.createRefreshToken(request.getEmail());
 
         return TokenResponse.builder()
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
                 .build();
     }
 }
