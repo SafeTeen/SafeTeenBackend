@@ -28,7 +28,7 @@ public class UserService {
     }
 
     @Transactional
-    public void editName(EditRequest request) {
+    public void editProfile(EditRequest request) {
         User user = userRepository.findByEmail(SecurityUtil.getEmail()).orElseThrow(UserNotFoundException::new);
         user.edit(request.getNickname(), request.getProfile_img());
         userRepository.save(user);

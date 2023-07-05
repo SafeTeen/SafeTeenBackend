@@ -17,8 +17,8 @@ public class UserController {
     }
 
     @PatchMapping("/mypage")
-    public void editName(@RequestBody EditRequest request) {
-        userService.editName(request);
+    public void editProfile(@RequestBody EditRequest request) {
+        userService.editProfile(request);
     }
 
     @PatchMapping("/reward/{reward}")
