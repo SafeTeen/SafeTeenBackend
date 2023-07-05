@@ -1,7 +1,5 @@
 package com.example.safeteenbackend.global.jwt;
 
-import com.example.safeteenbackend.domain.refresh.RefreshToken;
-import com.example.safeteenbackend.domain.refresh.RefreshTokenRepository;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +21,7 @@ public class TokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private final RefreshTokenRepository refreshTokenRepository;
-
     private final long ACCESS_TOKEN_VALID_TIME = 1000L * 60 * 60;
-    private final long REFRESH_TOKEN_VALID_TIME = 1000L * 60 * 60 * 24 * 7;
 
     public String createAccessToken(String email){
         Claims claims = Jwts.claims().setSubject(email);
