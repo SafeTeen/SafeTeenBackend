@@ -22,6 +22,6 @@ public class Shop {
     @Column
     private int price;
 
-    @Column
+    @Column(length = 999999999)
     private String product_img;
 }

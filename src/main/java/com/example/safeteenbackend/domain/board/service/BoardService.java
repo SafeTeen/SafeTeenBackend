@@ -5,6 +5,7 @@ import com.example.safeteenbackend.domain.board.controller.dto.response.BoardRes
 import com.example.safeteenbackend.domain.board.entity.Board;
 import com.example.safeteenbackend.domain.board.exception.BoardNotFound;
 import com.example.safeteenbackend.domain.board.repository.BoardRepository;
+import com.example.safeteenbackend.domain.comment.controller.dto.response.CommentResponse;
 import com.example.safeteenbackend.domain.user.entity.User;
 import com.example.safeteenbackend.domain.user.exception.UserNotFoundException;
 import com.example.safeteenbackend.domain.user.repository.UserRepository;
@@ -50,6 +51,10 @@ public class BoardService {
                 .title(board.getTitle())
                 .ask(board.getAsk())
                 .dateTime(board.getDate())
+                .commentList(board.getCommentList().stream().map(c -> new CommentResponse(
+                        c.getContent(),
+                        c.getCreateCommentTime()
+                )).collect(Collectors.toList()))
                 .build();
     }
 
@@ -65,7 +70,11 @@ public class BoardService {
                 b.getId(),
                 b.getTitle(),
                 b.getAsk(),
-                b.getDate()
+                b.getDate(),
+                b.getCommentList().stream().map(c -> new CommentResponse(
+                        c.getContent(),
+                        c.getCreateCommentTime()
+                )).collect(Collectors.toList())
         )).collect(Collectors.toList());
     }
 }

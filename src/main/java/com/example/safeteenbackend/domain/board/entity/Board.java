@@ -1,5 +1,6 @@
 package com.example.safeteenbackend.domain.board.entity;
 
+import com.example.safeteenbackend.domain.comment.entity.CommentEntity;
 import com.example.safeteenbackend.domain.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,4 +35,8 @@ public class Board {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    private List<CommentEntity> commentList;
 }

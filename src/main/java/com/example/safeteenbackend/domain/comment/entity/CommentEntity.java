@@ -1,6 +1,8 @@
 package com.example.safeteenbackend.domain.comment.entity;
 
+import com.example.safeteenbackend.domain.board.entity.Board;
 import com.example.safeteenbackend.domain.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,8 +25,13 @@ public class CommentEntity {
     @Column(nullable = false)
     private LocalDateTime createCommentTime;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 }

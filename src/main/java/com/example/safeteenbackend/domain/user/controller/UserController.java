@@ -4,10 +4,7 @@ import com.example.safeteenbackend.domain.user.controller.dto.request.EditReques
 import com.example.safeteenbackend.domain.user.controller.dto.response.UserResponse;
 import com.example.safeteenbackend.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +19,10 @@ public class UserController {
     @PatchMapping("/mypage")
     public void editName(@RequestBody EditRequest request) {
         userService.editName(request);
+    }
+
+    @PatchMapping("/reward/{reward}")
+    public void addReward(@PathVariable int reward) {
+        userService.addReward(reward);
     }
 }

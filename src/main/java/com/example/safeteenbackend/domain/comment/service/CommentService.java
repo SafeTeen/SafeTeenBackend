@@ -1,5 +1,8 @@
 package com.example.safeteenbackend.domain.comment.service;
 
+import com.example.safeteenbackend.domain.board.entity.Board;
+import com.example.safeteenbackend.domain.board.exception.BoardNotFound;
+import com.example.safeteenbackend.domain.board.repository.BoardRepository;
 import com.example.safeteenbackend.domain.comment.controller.dto.request.CommentRequest;
 import com.example.safeteenbackend.domain.comment.controller.dto.response.CommentResponse;
 import com.example.safeteenbackend.domain.comment.entity.CommentEntity;
@@ -21,13 +24,16 @@ public class CommentService {
 
     private final CommentRepository cR;
     private final UserRepository userRepository;
+    private final BoardRepository boardRepository;
 
     //답변 작성
     public CommentResponse write(CommentRequest comment) {
         User user = userRepository.findByEmail(SecurityUtil.getEmail()).orElseThrow(UserNotFoundException::new);
+        Board board = boardRepository.findById(comment.getBoard_id()).orElseThrow(BoardNotFound::new);
         CommentEntity commentEntity = CommentEntity.builder()
                 .content(comment.getContent())
                 .user(user)
+                .board(board)
                 .createCommentTime(LocalDateTime.now())
                 .build();
         cR.save(commentEntity);

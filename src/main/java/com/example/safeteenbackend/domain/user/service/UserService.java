@@ -30,7 +30,14 @@ public class UserService {
     @Transactional
     public void editName(EditRequest request) {
         User user = userRepository.findByEmail(SecurityUtil.getEmail()).orElseThrow(UserNotFoundException::new);
-        user.editName(request.getNickname());
+        user.edit(request.getNickname(), request.getProfile_img());
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void addReward(int reward) {
+        User user = userRepository.findByEmail(SecurityUtil.getEmail()).orElseThrow(UserNotFoundException::new);
+        user.editReward(user.getReward() + reward);
         userRepository.save(user);
     }
 }

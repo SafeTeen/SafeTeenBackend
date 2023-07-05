@@ -45,8 +45,9 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Shop> shopList;
 
-    public void editName(String nickname) {
+    public void edit(String nickname, String profile_img) {
         this.nickname = nickname;
+        this.profile_img = profile_img;
     }
     public void editReward(int reward){
         this.reward = reward;
